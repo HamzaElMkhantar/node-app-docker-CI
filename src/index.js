@@ -24,40 +24,40 @@ redisClient.on("connect", () => {
 });
 redisClient.connect().catch(console.error);
 
-// db connection
-// const DB_USER = 'root'
-// const DB_PASSWORD = 'example'
-// const DB_PORT = 27018
-// const DB_HOST = 'mongo'
-// const URI = `mongodb://${DB_USER}:${ DB_PASSWORD}@${DB_HOST}:${DB_PORT}`
+db connection
+const DB_USER = 'root'
+const DB_PASSWORD = 'example'
+const DB_PORT = 27018
+const DB_HOST = 'mongo'
+const URI = `mongodb://${DB_USER}:${ DB_PASSWORD}@${DB_HOST}:${DB_PORT}`
 
-// mongoose
-//   .connect(URI)
-//   .then(res => {
-//     console.log("mongo - database connected.")
-//   })
-//   .catch((err) => {
-//     console.log("mongo - error connecting database. : ", err)
-//   })
-
-const { Client, Pool } = pg
-const PG_HOST = 'postgres'
-const PG_PORT = 5432
-const PG_USER = "root";
-const PG_PASSWORD = "example";
-
-const connectionString = `postgresql://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:${PG_PORT}`;
-const client = new Client({
-  connectionString,
-})
-client
-  .connect().then(() => {
-    console.log('Postgres - database connected.')
+mongoose
+  .connect(URI)
+  .then(res => {
+    console.log("mongo - database connected.")
   })
   .catch((err) => {
-    console.error('Postgres - error connecting database.', err)
-  }
-  )
+    console.log("mongo - error connecting database. : ", err)
+  })
+
+// const { Client, Pool } = pg
+// const PG_HOST = 'postgres'
+// const PG_PORT = 5432
+// const PG_USER = "root";
+// const PG_PASSWORD = "example";
+
+// const connectionString = `postgresql://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:${PG_PORT}`;
+// const client = new Client({
+//   connectionString,
+// })
+// client
+//   .connect().then(() => {
+//     console.log('Postgres - database connected.')
+//   })
+//   .catch((err) => {
+//     console.error('Postgres - error connecting database.', err)
+//   }
+//   )
 
 app.get("/", (req, res) => {
   redisClient.set("products", "products data ...");
