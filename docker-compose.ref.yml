@@ -1,0 +1,19 @@
+version: "3"
+services:
+  compose-node-app:
+    container_name: node-app-container
+    build: .
+    volumes:
+      - ./src:/app/src:ro
+    ports:
+      - "4000:4000"
+    # environment:
+    #   - NODE_ENV=production
+    #   - PORT=4000
+    #   - DB_HOST=database
+    #   - DB_PORT=5432
+    #   - DB_USER=postgres
+    #   - DB_PASSWORD=postgres
+    #   - DB_NAME=node_app_db
+    env_file:
+      - ./.env

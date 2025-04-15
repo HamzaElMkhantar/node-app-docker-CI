@@ -1,0 +1,12 @@
+/node_modules
+/package-lock.json
+/.env
+Dockerfile
+# docker-compose*
+
+
+# Ignore docker-compose files
+docker-compose.yml
+docker-compose.dev.yml
+docker-compose.prod.yml
+docker-compose.ref.yml
