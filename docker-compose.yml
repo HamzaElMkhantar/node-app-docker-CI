@@ -2,6 +2,7 @@ version: "3"
 services:
   compose-node-app:
     image: hamzaelmkhantar/node-app
+    platform: linux/amd64  
     container_name: node-app-container
     ports:
       - "4000:4000"
@@ -10,10 +11,14 @@ services:
     depends_on:
       # - postgres
       - redis
+      - mongo
 
   mongo:
     image: mongo
+    platform: linux/amd64  
     restart: always
+    ports:
+      - 27017:27017
     volumes:
       - mongo-db:/data/db
     environment:
@@ -45,11 +50,13 @@ services:
 
   redis:
     image: redis
-    # depends_on:
-    #   - mongo
+    platform: linux/amd64
+    depends_on:
+      - mongo
 
   nginx:
     image: nginx:stable-alpine
+    platform: linux/amd64
     ports:
       - "80:80"
     volumes:
