@@ -1,6 +1,7 @@
 version: "3"
 services:
   compose-node-app:
+    image: hamzaelmkhantar/node-app
     container_name: node-app-container
     ports:
       - "4000:4000"
