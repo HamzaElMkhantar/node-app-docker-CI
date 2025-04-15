@@ -24,7 +24,7 @@ redisClient.on("connect", () => {
 });
 redisClient.connect().catch(console.error);
 
-db connection
+// db connection
 const DB_USER = 'root'
 const DB_PASSWORD = 'example'
 const DB_PORT = 27018
@@ -62,7 +62,7 @@ mongoose
 app.get("/", (req, res) => {
   redisClient.set("products", "products data ...");
   res.send(
-    `<h4>[ ${process.env.NODE_ENV} ] - Hello, World! -- This is an api server running on port 0.0.0.0:4000 -> 4000/tcp.</h1>`
+    `<h4>[ ${process.env.NODE_ENV} ] - Hello, World! -- This is an api server running ${process.env.NODE_ENV === 'production' ? 'From OVHCloud': 'in local machine'}.</h1>`
   );
 })
 
