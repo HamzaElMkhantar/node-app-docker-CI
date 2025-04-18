@@ -9,11 +9,11 @@ services:
     env_file:
       - ./.env
     deploy:
-      replicas: 4
+      replicas: 2
       # placement:
       #   max_replicas_per_node: 1 // we already have 1 node work as manager and worker node 
       update_config:
-        parallelism: 2
+        parallelism: 1
         delay: 10s
       restart_policy:
         condition: on-failure
