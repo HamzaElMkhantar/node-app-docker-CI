@@ -64,19 +64,28 @@ app.get("/", (req, res) => {
   redisClient.set("products", "products data ...");
   console.log(`traffic from ${os.hostname}`);
   res.send(
-    `<h4>[ ${
-      process.env.NODE_ENV === "production"
-        ? "2 ---> Pulled from dicker hub"
-        : "local development"
+    `<h4>[ ${process.env.NODE_ENV === "production"
+      ? "2 ---> Pulled from dicker hub"
+      : "local development"
     } ] - Hello word!. - watchtower test / swarm test</h1>`
   );
 })
 
 app.get("/data", async (req, res) => {
   const products = await redisClient.get("products");
-  res.send(
-    `<h4>[ ${process.env.NODE_ENV} ] - Hello, World! -- This is an api server running on port 0.0.0.0:4000 -> 4000/tcp.</h1> <br /> <h4>products :  ${products} </h4>`
-  );
+  res.json({
+    message:
+      `<h4>[ ${process.env.NODE_ENV} ] - Hello, World! -- This is an api server running on port 0.0.0.0:4000 -> 4000/tcp.</h1> <br /> <h4>products :  ${products} </h4>`,
+    hostname: os.hostname(),
+    redis: {
+      host: REDIS_HOST,
+      port: REDIS_PORT,
+    },
+    mongo: {
+      host: DB_HOST,
+      port: DB_PORT,
+    },
+  });
 })
 
 app.get("/db", async (req, res) => {
