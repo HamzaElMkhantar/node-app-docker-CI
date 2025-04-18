@@ -3,11 +3,21 @@ services:
   compose-node-app:
     image: hamzaelmkhantar/node-app
     platform: linux/amd64  
-    container_name: node-app-container
-    ports:
-      - "4000:4000"
+    # container_name: node-app-container // we remove that to scale container to multiple instances, 2, 3 or more containers of this app !
+    # ports:
+    #   - "4000:4000"
     env_file:
       - ./.env
+    deploy:
+      replicas: 4
+      # placement:
+      #   max_replicas_per_node: 1 // we already have 1 node work as manager and worker node 
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
     depends_on:
       # - postgres
       - redis
@@ -17,8 +27,8 @@ services:
     image: mongo
     platform: linux/amd64  
     restart: always
-    ports:
-      - 27017:27017
+    # ports:
+    #   - 27017:27017
     volumes:
       - mongo-db:/data/db
     environment:

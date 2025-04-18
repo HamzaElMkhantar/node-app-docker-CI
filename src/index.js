@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const http = require("http");
 const redis = require("redis");
 const pg = require("pg");
+const os = require("os");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -29,7 +30,7 @@ const DB_USER = 'root'
 const DB_PASSWORD = 'example'
 const DB_PORT = 27018
 const DB_HOST = 'mongo'
-const URI = `mongodb://${DB_USER}:${ DB_PASSWORD}@${DB_HOST}:${DB_PORT}`
+const URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}`
 
 mongoose
   .connect(URI)
@@ -61,8 +62,9 @@ mongoose
 
 app.get("/", (req, res) => {
   redisClient.set("products", "products data ...");
+  console.log(`traffic from ${os.hostname}`);
   res.send(
-    `<h4>[ ${process.env.NODE_ENV} ]!!!! - Hello!${process.env.NODE_ENV === 'production' ? '-- OVHCloud --': 'in local machine'}. [ using docker hub]</h1>`
+    `<h4>[ ${process.env.NODE_ENV === "production" ? '2 ---> Pulled from dicker hub' : 'local development'} ] - Hello word!. - watchtower test</h1>`
   );
 })
 
