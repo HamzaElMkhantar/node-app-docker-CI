@@ -64,7 +64,11 @@ app.get("/", (req, res) => {
   redisClient.set("products", "products data ...");
   console.log(`traffic from ${os.hostname}`);
   res.send(
-    `<h4>[ ${process.env.NODE_ENV === "production" ? '2 ---> Pulled from dicker hub' : 'local development'} ] - Hello word!. - watchtower test</h1>`
+    `<h4>[ ${
+      process.env.NODE_ENV === "production"
+        ? "2 ---> Pulled from dicker hub"
+        : "local development"
+    } ] - Hello word!. - watchtower test / swarm test</h1>`
   );
 })
 
