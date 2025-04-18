@@ -4,7 +4,9 @@ services:
     # build: ./Dockerfile.dev
     build: 
       context: .
-      target: development
+      # target: development
+      args:
+        - NODE_ENV=development
     volumes:
       - ./src:/app/src:ro
     environment:
