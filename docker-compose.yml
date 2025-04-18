@@ -2,7 +2,7 @@ version: "3"
 services:
   compose-node-app:
     image: hamzaelmkhantar/node-app
-    platform: linux/amd64  
+    # platform: linux/amd64  
     # container_name: node-app-container // we remove that to scale container to multiple instances, 2, 3 or more containers of this app !
     # ports:
     #   - "4000:4000"
